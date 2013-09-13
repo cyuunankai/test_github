@@ -15,4 +15,5 @@ class ShowController < ApplicationController
     end 
     render :text => html_response
   end
+
 end
