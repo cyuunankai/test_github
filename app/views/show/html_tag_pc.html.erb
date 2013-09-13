@@ -1,0 +1,30 @@
+<script type="text/javascript">
+(function() {
+        var random = function(arr, n) {
+            var len = arr.length;
+            var ret = '';
+            for (var i=0; i<n; i++) {
+                ret += arr[Math.floor(Math.random()*len)];
+            }
+            return ret;
+        };
+        random.alpha = 'abcdefghijklmnopqrstuvwxyz';
+        var timg;
+        while (true) {
+            var tId = random(random.alpha, 5);
+            var tmp = document.getElementById(tId);
+            if (!tmp) {
+                timg = document.createElement('img');
+                timg.id = tId;
+                timg.style.display = 'none';
+                document.documentElement.appendChild(timg);
+                break;
+            }
+        }    
+        window.gsmClickTrackHandler = function() {
+            timg.src = '{CLICK_URL}';
+        }
+    })();</script>
+<div id="gsm_ad"></div>
+<script type="text/javascript" src="http://jpmispot.goldspotmedia.com/pe/dti?i=1480"
+data-gsmuserblock='{"h":{"x":"gsm_ad"}, "V":[{"C":{"H":"window.gsmClickTrackHandler"}}]}'></script>
