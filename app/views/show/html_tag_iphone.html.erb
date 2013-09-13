@@ -28,3 +28,52 @@
 <div id="gsm_ad"></div>
 <script type="text/javascript" src="simulate_phone?url=http://jpmispot.goldspotmedia.com/pe/dti?i=1480"
 data-gsmuserblock='{"h":{"x":"gsm_ad"}, "V":[{"C":{"H":"window.gsmClickTrackHandler"}}]}'></script>
+
+views code<br/>
+<textarea rows=35 cols=110>
+<script type="text/javascript">
+(function() {
+        var random = function(arr, n) {
+            var len = arr.length;
+            var ret = '';
+            for (var i=0; i<n; i++) {
+                ret += arr[Math.floor(Math.random()*len)];
+            }
+            return ret;
+        };
+        random.alpha = 'abcdefghijklmnopqrstuvwxyz';
+        var timg;
+        while (true) {
+            var tId = random(random.alpha, 5);
+            var tmp = document.getElementById(tId);
+            if (!tmp) {
+                timg = document.createElement('img');
+                timg.id = tId;
+                timg.style.display = 'none';
+                document.documentElement.appendChild(timg);
+                break;
+            }
+        }    
+        window.gsmClickTrackHandler = function() {
+            timg.src = '{CLICK_URL}';
+        }
+    })();</script>
+<div id="gsm_ad"></div>
+<script type="text/javascript" src="simulate_phone?url=http://jpmispot.goldspotmedia.com/pe/dti?i=1480"
+data-gsmuserblock='{"h":{"x":"gsm_ad"}, "V":[{"C":{"H":"window.gsmClickTrackHandler"}}]}'></script>
+</textarea>
+
+<br/>
+controller code
+<br/>
+<textarea rows=11 cols=185>
+def simulate_phone
+    require "open-uri" 
+    uri = params[:url]
+    html_response = nil 
+    open(uri,"User-Agent" => "Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3",) do |http|  
+      html_response = http.read  
+    end 
+    render :text => html_response
+  end
+</textarea>
